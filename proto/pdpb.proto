@@ -1,5 +1,6 @@
 syntax = "proto3";
 package pdpb;
+option go_package = "pdpb";
 
 import "metapb.proto";
 import "eraftpb.proto";

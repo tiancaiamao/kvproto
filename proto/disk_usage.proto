@@ -1,5 +1,6 @@
 syntax = "proto3";
 package disk_usage;
+option go_package = "disk_usage";
 
 import "rustproto.proto";
 

@@ -1,5 +1,6 @@
 syntax = "proto3";
 package raft_serverpb;
+option go_package = "raft_serverpb";
 
 import "eraftpb.proto";
 import "metapb.proto";

@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package import_kvpb;
+option go_package = "import_kvpb";
 
 import "import_sstpb.proto";
 import "gogoproto/gogo.proto";

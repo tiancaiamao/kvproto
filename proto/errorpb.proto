@@ -1,5 +1,6 @@
 syntax = "proto3";
 package errorpb;
+option go_package = "errorpb";
 
 import "metapb.proto";
 import "gogoproto/gogo.proto";

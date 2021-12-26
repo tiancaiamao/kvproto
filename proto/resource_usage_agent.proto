@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package resource_usage_agent;
+option go_package = "resource_usage_agent";
 
 import "gogoproto/gogo.proto";
 import "rustproto.proto";

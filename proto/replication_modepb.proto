@@ -1,5 +1,6 @@
 syntax = "proto3";
 package replication_modepb;
+option go_package = "replication_modepb";
 
 enum ReplicationMode {
     // The standard mode. Replicate logs to majority peer.

@@ -1,5 +1,6 @@
 syntax = "proto3";
 package span;
+option go_package = "span";
 
 message SpanSet {
     uint64 start_time_ns = 1;

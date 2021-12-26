@@ -1,5 +1,6 @@
 syntax = "proto3";
 package kvrpcpb;
+option go_package = "kvrpcpb";
 
 import "metapb.proto";
 import "errorpb.proto";

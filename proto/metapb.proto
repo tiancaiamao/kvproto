@@ -1,5 +1,6 @@
 syntax = "proto3";
 package metapb;
+option go_package = "metapb";
 
 import "encryptionpb.proto";
 import "gogoproto/gogo.proto";

@@ -1,5 +1,6 @@
 syntax = "proto3";
 package configpb;
+option go_package = "configpb";
 
 import "gogoproto/gogo.proto";
 import "rustproto.proto";

@@ -1,5 +1,6 @@
 syntax = "proto3";
 package tikvpb;
+option go_package = "tikvpb";
 
 import "coprocessor.proto";
 import "kvrpcpb.proto";
