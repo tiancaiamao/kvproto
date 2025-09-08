@@ -77,6 +77,26 @@ message ScanResponse {
     KeyError error = 3;
 }
 
+
+// DDLScan fetches values for a range of keys; it is not using the conventional transaction protocol.
+// Used by DDL only.
+message DDLScanRequest {
+    Context context = 1;
+    bytes start_key = 2;
+    bytes end_key = 3;
+    uint64 version = 4;
+}
+
+message DDLScanResponse {
+    errorpb.Error region_error = 1;
+    // Each KvPair may contain a key error.
+    repeated KvPair pairs = 2;
+    // This KeyError exists when some key is locked but we cannot check locks of all keys.
+    // In this case, `pairs` should be empty and the client should redo scanning all the keys
+    // after resolving the lock.
+    KeyError error = 3;
+}
+
 // A prewrite is the first phase of writing to TiKV. It contains all data to be written in a transaction.
 // TiKV will write the data in a preliminary state. Data cannot be read until it has been committed.
 // The client should only commit a transaction once all prewrites succeed.
@@ -136,6 +156,8 @@ message PrewriteRequest {
     // for_update_ts constriants that should be checked when prewriting a pessimistic transaction.
     // See https://github.com/tikv/tikv/issues/14311
     repeated ForUpdateTSConstraint for_update_ts_constraints = 16;
+    // This transaction is used by DDL, it has its own way of resolving locks.
+    bool for_ddl_protocol = 17;
 
     // Reserved for file based transaction.
     repeated uint64 txn_file_chunks = 100;
