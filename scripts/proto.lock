@@ -9263,7 +9263,7 @@
             ]
           },
           {
-            "name": "DDLScanRequest",
+            "name": "DDLBackfillScanRequest",
             "fields": [
               {
                 "id": 1,
@@ -9282,13 +9282,18 @@
               },
               {
                 "id": 4,
+                "name": "limit",
+                "type": "uint32"
+              },
+              {
+                "id": 5,
                 "name": "version",
                 "type": "uint64"
               }
             ]
           },
           {
-            "name": "DDLScanResponse",
+            "name": "DDLBackfillScanResponse",
             "fields": [
               {
                 "id": 1,
@@ -9300,11 +9305,48 @@
                 "name": "pairs",
                 "type": "KvPair",
                 "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "DDLBackfillCommitRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "context",
+                "type": "Context"
+              },
+              {
+                "id": 2,
+                "name": "mutations",
+                "type": "Mutation",
+                "is_repeated": true
               },
               {
                 "id": 3,
-                "name": "error",
-                "type": "KeyError"
+                "name": "primary_lock",
+                "type": "bytes"
+              },
+              {
+                "id": 4,
+                "name": "start_version",
+                "type": "uint64"
+              }
+            ]
+          },
+          {
+            "name": "DDLBackfillCommitResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "region_error",
+                "type": "errorpb.Error"
+              },
+              {
+                "id": 2,
+                "name": "pairs",
+                "type": "KvPair",
+                "is_repeated": true
               }
             ]
           },
@@ -22496,8 +22538,14 @@
                   },
                   {
                     "id": 41,
-                    "name": "DDLScan",
-                    "type": "kvrpcpb.DDLScanRequest",
+                    "name": "DDLBackfillScan",
+                    "type": "kvrpcpb.DDLBackfillScanRequest",
+                    "oneof_parent": "cmd"
+                  },
+                  {
+                    "id": 42,
+                    "name": "DDLBackfillCommit",
+                    "type": "kvrpcpb.DDLBackfillCommitRequest",
                     "oneof_parent": "cmd"
                   },
                   {
@@ -22754,8 +22802,14 @@
                   },
                   {
                     "id": 41,
-                    "name": "DDLScan",
-                    "type": "kvrpcpb.DDLScanResponse",
+                    "name": "DDLBackfillScan",
+                    "type": "kvrpcpb.DDLBackfillScanResponse",
+                    "oneof_parent": "cmd"
+                  },
+                  {
+                    "id": 42,
+                    "name": "DDLBackfillCommit",
+                    "type": "kvrpcpb.DDLBackfillCommitResponse",
                     "oneof_parent": "cmd"
                   },
                   {
@@ -22823,9 +22877,14 @@
             "name": "Tikv",
             "rpcs": [
               {
-                "name": "KvDDLScan",
-                "in_type": "kvrpcpb.DDLScanRequest",
-                "out_type": "kvrpcpb.DDLScanResponse"
+                "name": "KvDDLBackfillScan",
+                "in_type": "kvrpcpb.DDLBackfillScanRequest",
+                "out_type": "kvrpcpb.DDLBackfillScanResponse"
+              },
+              {
+                "name": "KvDDLBackfillCommit",
+                "in_type": "kvrpcpb.DDLBackfillCommitRequest",
+                "out_type": "kvrpcpb.DDLBackfillCommitResponse"
               },
               {
                 "name": "KvGet",

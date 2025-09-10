@@ -23,7 +23,8 @@ option java_package = "org.tikv.kvproto";
 // Key/value store API for TiKV.
 service Tikv {
     // Commands using a transactional interface.
-    rpc KvDDLScan(kvrpcpb.DDLScanRequest) returns (kvrpcpb.DDLScanResponse) {}
+    rpc KvDDLBackfillScan(kvrpcpb.DDLBackfillScanRequest) returns (kvrpcpb.DDLBackfillScanResponse) {}
+    rpc KvDDLBackfillCommit(kvrpcpb.DDLBackfillCommitRequest) returns (kvrpcpb.DDLBackfillCommitResponse) {}
     rpc KvGet(kvrpcpb.GetRequest) returns (kvrpcpb.GetResponse) {}
     rpc KvScan(kvrpcpb.ScanRequest) returns (kvrpcpb.ScanResponse) {}
     rpc KvPrewrite(kvrpcpb.PrewriteRequest) returns (kvrpcpb.PrewriteResponse) {}
@@ -198,7 +199,8 @@ message BatchCommandsRequest {
             kvrpcpb.GetHealthFeedbackRequest GetHealthFeedback = 39;
 
             kvrpcpb.BroadcastTxnStatusRequest BroadcastTxnStatus = 40;
-            kvrpcpb.DDLScanRequest DDLScan = 41;
+            kvrpcpb.DDLBackfillScanRequest DDLBackfillScan = 41;
+            kvrpcpb.DDLBackfillCommitRequest DDLBackfillCommit = 42;
 
             // For some test cases.
             BatchCommandsEmptyRequest Empty = 255;
@@ -261,7 +263,8 @@ message BatchCommandsResponse {
             kvrpcpb.GetHealthFeedbackResponse GetHealthFeedback = 39;
             
             kvrpcpb.BroadcastTxnStatusResponse BroadcastTxnStatus = 40;
-            kvrpcpb.DDLScanResponse DDLScan = 41;
+            kvrpcpb.DDLBackfillScanResponse DDLBackfillScan = 41;
+            kvrpcpb.DDLBackfillCommitResponse DDLBackfillCommit = 42;
 
             // For some test cases.
             BatchCommandsEmptyResponse Empty = 255;
