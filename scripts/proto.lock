@@ -9284,6 +9284,11 @@
                 "id": 8,
                 "name": "sample_step",
                 "type": "uint32"
+              },
+              {
+                "id": 9,
+                "name": "skip_newer_change",
+                "type": "bool"
               }
             ]
           },
@@ -9394,6 +9399,11 @@
                 "name": "for_update_ts_constraints",
                 "type": "ForUpdateTSConstraint",
                 "is_repeated": true
+              },
+              {
+                "id": 17,
+                "name": "skip_newer_change",
+                "type": "bool"
               },
               {
                 "id": 100,

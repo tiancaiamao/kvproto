@@ -65,6 +65,8 @@ message ScanRequest {
     // If sample_step > 0, skips 'sample_step - 1' number of keys after each returned key.
     // locks are not checked.
     uint32 sample_step = 8;
+    // If this flag is set, the scan operation will not return the kv pair when newer version exists.
+    bool skip_newer_change = 9;
 }
 
 message ScanResponse {
@@ -136,6 +138,9 @@ message PrewriteRequest {
     // for_update_ts constriants that should be checked when prewriting a pessimistic transaction.
     // See https://github.com/tikv/tikv/issues/14311
     repeated ForUpdateTSConstraint for_update_ts_constraints = 16;
+    // If this flag is set, when a mutation meets newer version change, the mutation is discard silently, and that
+    // case is not consider as conflict.
+    bool skip_newer_change = 17;
 
     // Reserved for file based transaction.
     repeated uint64 txn_file_chunks = 100;
